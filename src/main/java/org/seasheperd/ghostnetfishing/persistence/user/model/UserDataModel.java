@@ -1,0 +1,21 @@
+package org.seasheperd.ghostnetfishing.persistence.user.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "user")
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserDataModel {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+  private String vorname;
+  private String nachname;
+  private String telefonnr;
+  private String password;
+}
