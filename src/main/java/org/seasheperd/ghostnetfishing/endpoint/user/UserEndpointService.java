@@ -1,20 +1,22 @@
 package org.seasheperd.ghostnetfishing.endpoint.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.seasheperd.ghostnetfishing.domain.user.api.UserService;
+import org.seasheperd.ghostnetfishing.domain.user.model.User;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserEndpointService {
-  private final UserService userService;
-  private final UserEndpointMapper mapper;
+    private final UserService userService;
+    private final UserEndpointMapper mapper;
 
-  public void registerUser(UserEndpointModel endpointModel) {
-    userService.createUser(mapper.toUser(endpointModel));
-  }
+    public void registerUser(UserEndpointModel endpointModel) {
+        userService.createUser(mapper.toUser(endpointModel));
+    }
 
-  public void verifyLogin(String telefonnr, String password) {
-    userService.verifyLogin(telefonnr, password);
-  }
+    public Long verifyLogin(String telefonnr, String password) {
+        User user = userService.verifyLogin(telefonnr, password);
+        return user != null ? user.getId() : null;
+    }
 }

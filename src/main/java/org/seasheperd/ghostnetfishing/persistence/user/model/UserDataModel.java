@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDataModel {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String vorname;
-  private String nachname;
-  private String telefonnr;
-  private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String vorname;
+    private String nachname;
+    private String telefonnr;
+    private String password;
 }
