@@ -13,19 +13,19 @@ import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Status;
 @Entity
 @Table(name = "geisternetz")
 public class GeisternetzDataModel {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(referencedColumnName = "id")
-  private StandortDataModel standort;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
+    private StandortDataModel standort;
 
-  @Enumerated(EnumType.STRING)
-  private Groesse groesse;
+    @Enumerated(EnumType.STRING)
+    private Groesse groesse;
 
-  @Enumerated(EnumType.STRING)
-  private Status status;
-  
-  private Long userId;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    private Long userId;
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Geisternetz Details</title>
+</head>
+<body>
+
+<h1>Geisternetz Detailansicht</h1>
+
+<div>
+    <h3>Standort</h3>
+    <ul>
+        <li><strong>Breitengrad:</strong> <span th:text="${geisternetz.standort.breitengrad}"/></li>
+        <li><strong>Längengrad:</strong> <span th:text="${geisternetz.standort.laengengrad}"/></li>
+    </ul>
+
+    <p><strong>Größe:</strong> <span th:text="${geisternetz.groesse}"/></p>
+    <div th:if="${geisternetz.userId == session.userId and geisternetz.status.isChangeable()}">
+        <h4>Status ändern:</h4>
+        <form method="post" th:action="@{/geisternetz/status}">
+            <input type="hidden" name="geisternetzId" th:value="${geisternetz.id}"/>
+            <select name="neuerStatus">
+                <option value="BERGUNG_BEVORSTEHEND">Bergung Bevorstehend</option>
+                <option value="GEBORGEN">Geborgen</option>
+                <option value="VERSCHOLLEN">Verschollen</option>
+            </select>
+            <button type="submit">Status ändern</button>
+        </form>
+    </div>
+
+    <p th:if="${geisternetz.userId != session.userId and geisternetz.status.isFinal()}"><strong>Status:</strong> <span
+            th:text="${geisternetz.status}"/></p>
+
+    <div th:if="${geisternetz.userId == null}">
+        <p><strong>Bearbeiter:</strong> Noch nicht zugewiesen</p>
+        <form method="post" th:action="@{/geisternetz/zuweisen}">
+            <input type="hidden" name="geisternetzId" th:value="${geisternetz.id}"/>
+            <button type="submit">Mir zuweisen</button>
+        </form>
+    </div>
+
+</div>
+
+<p><a th:href="@{/geisternetz}">Zurück zur Übersicht</a></p>
+
+</body>
+</html>

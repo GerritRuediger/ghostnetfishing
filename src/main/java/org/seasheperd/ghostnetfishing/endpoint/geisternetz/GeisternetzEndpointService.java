@@ -6,6 +6,8 @@ import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Groesse;
 import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Status;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GeisternetzEndpointService {
@@ -22,5 +24,13 @@ public class GeisternetzEndpointService {
 
     public void updateGeisternetzUserId(long id, long newUserId) {
         service.updateUserId(id, newUserId);
+    }
+
+    public List<GeisternetzEndpointModel> findAllGemeldetGeisternetze() {
+        return service.findAllGemeldetGeisternetze().stream().map(mapper::toGeisternetzEndpointModel).toList();
+    }
+
+    public GeisternetzEndpointModel findById(long id) {
+        return service.findById(id).map(mapper::toGeisternetzEndpointModel).orElse(null);
     }
 }

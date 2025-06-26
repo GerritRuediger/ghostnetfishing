@@ -6,13 +6,13 @@ import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Status;
 
 @Data
 public class GeisternetzEndpointModel {
-  private long id;
-  private StandortEndpointModel standort;
-  private Groesse groesse;
-  private Status status;
-  private Long userId;
+    private long id;
+    private StandortEndpointModel standort;
+    private Groesse groesse;
+    private Status status;
+    private Long userId;
 
-  GeisternetzEndpointModel() {
-    this.id = 0;
-  }
+    public GeisternetzEndpointModel() {
+        this.id = 0;
+    }
 }

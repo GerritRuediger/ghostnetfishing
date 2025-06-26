@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Offene Geisternetze</title>
+</head>
+<body>
+
+<h1>Offene Geisternetze</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Breitengrad</th>
+        <th>Längengrad</th>
+        <th>Größe</th>
+        <th>Status</th>
+        <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="netz : ${geisternetze}">
+        <td th:text="${netz.standort.breitengrad}"/>
+        <td th:text="${netz.standort.laengengrad}"/>
+        <td th:text="${netz.groesse}"/>
+        <td th:text="${netz.status}"/>
+        <td>
+            <a th:href="@{'/geisternetz/' + ${netz.id}}">Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

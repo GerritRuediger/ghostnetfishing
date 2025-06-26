@@ -28,7 +28,7 @@ public class RegistrationController {
         System.out.println("Registrierung: " + userDto.getTelefonnr());
         try {
             userEndpointService.registerUser(userDto);
-            return "login";
+            return "redirect:/login";
         } catch (Exception ex) {
             return "register";
         }

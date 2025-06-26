@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
@@ -19,10 +17,11 @@ public class LoginController {
     @GetMapping("/login")
     public String showLogin(HttpSession session, Model model) {
         if (session.getAttribute("userId") == null) {
-            model.addAllAttributes(List.of("telefonnr", "password"));
+            model.addAttribute("telefonnr");
+            model.addAttribute("password");
             return "login";
         } else {
-            return "redirect:/uebersicht";
+            return "redirect:/geisternetz";
         }
     }
 
@@ -40,7 +39,7 @@ public class LoginController {
             return "login";
         } else {
             httpSession.setAttribute("userId", userId);
-            return "redirect:/uebersicht";
+            return "redirect:/geisternetz";
         }
     }
 }

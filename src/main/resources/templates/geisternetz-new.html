@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Geisternetz erfassen</title>
+</head>
+<body>
+
+<h1>Geisternetz erfassen</h1>
+
+<form th:action="@{/geisternetz/new}" th:object="${geisternetz}" method="post">
+    <fieldset>
+        <legend>Standort</legend>
+        <label for="breitengrad">Breitengrad:</label>
+        <input type="text" id="breitengrad" th:field="*{standort.breitengrad}" required/><br/>
+
+        <label for="laengengrad">Längengrad:</label>
+        <input type="text" id="laengengrad" th:field="*{standort.laengengrad}" required/>
+    </fieldset>
+
+    <fieldset>
+        <legend>Details</legend>
+        <label for="groesse">Größe:</label>
+        <select id="groesse" th:field="*{groesse}" required>
+            <option th:each="g : ${T(org.seasheperd.ghostnetfishing.domain.geisternetz.model.Groesse).values()}"
+                    th:value="${g}" th:text="${g}">Größe
+            </option>
+        </select><br/>
+    </fieldset>
+
+    <button type="submit">Speichern</button>
+</form>
+
+</body>
+</html>

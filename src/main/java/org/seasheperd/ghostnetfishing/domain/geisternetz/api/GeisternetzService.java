@@ -6,13 +6,16 @@ import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Standort;
 import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Status;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GeisternetzService {
-  Geisternetz createGeisternetz(Standort standort, Groesse groesse);
+    Geisternetz createGeisternetz(Standort standort, Groesse groesse);
 
-  Geisternetz updateStatus(long id, Status newStatus);
+    Geisternetz updateStatus(long id, Status newStatus);
 
-  Geisternetz updateUserId(long id, long newUserId);
+    Geisternetz updateUserId(long id, long newUserId);
 
-  List<Geisternetz> findAllGemeldetGeisternetze();
+    List<Geisternetz> findAllGemeldetGeisternetze();
+
+    Optional<Geisternetz> findById(long id);
 }
