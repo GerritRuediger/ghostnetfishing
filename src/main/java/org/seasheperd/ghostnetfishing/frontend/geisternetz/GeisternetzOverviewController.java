@@ -17,12 +17,25 @@ public class GeisternetzOverviewController {
     private final GeisternetzEndpointService geisternetzService;
 
     @GetMapping("/geisternetz")
+    public String showGeisternetzPersonalUebersicht(Model model, HttpSession session) {
+        Long userId = (Long) (session.getAttribute("userId"));
+        if (userId == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("ueberschrift", "Mir zugewiesene Geisternetze");
+        model.addAttribute("geisternetze", geisternetzService.findAllGeisternetzeByUserId(userId));
+        return "geisternetz-uebersicht";
+    }
+
+    @GetMapping("/geisternetz")
     public String showGeisternetzUebersicht(Model model, HttpSession session) {
         if (session.getAttribute("userId") == null) {
             return "redirect:/login";
         }
 
-        model.addAttribute("geisternetze", geisternetzService.findAllGemeldetGeisternetze());
+        model.addAttribute("ueberschrift", "Offene Geisternetze");
+        model.addAttribute("geisternetze", geisternetzService.findAllZuBergendeGeisternetze());
         return "geisternetz-uebersicht";
     }
 

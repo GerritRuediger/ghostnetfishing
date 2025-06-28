@@ -9,6 +9,10 @@
 
 <h1>Geisternetz erfassen</h1>
 
+<div th:if="${successMessage}" class="alert alert-success">
+    <p th:text="${successMessage}"></p>
+</div>
+
 <form th:action="@{/geisternetz/new}" th:object="${geisternetz}" method="post">
     <fieldset>
         <legend>Standort</legend>

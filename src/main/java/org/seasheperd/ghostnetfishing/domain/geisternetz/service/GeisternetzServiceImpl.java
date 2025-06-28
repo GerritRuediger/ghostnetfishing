@@ -53,4 +53,11 @@ public class GeisternetzServiceImpl implements GeisternetzService {
     public Optional<Geisternetz> findById(long id) {
         return geisternetzPersistenceService.findById(id);
     }
+
+    @Override
+    public List<Geisternetz> findAllGeisternetzeByUserId(long userId) {
+        return geisternetzPersistenceService.findAll().stream()
+                .filter(geisternetz -> geisternetz.getUserId() == userId)
+                .toList();
+    }
 }

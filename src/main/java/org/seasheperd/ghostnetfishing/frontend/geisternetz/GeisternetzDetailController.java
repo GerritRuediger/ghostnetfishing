@@ -2,6 +2,7 @@ package org.seasheperd.ghostnetfishing.frontend.geisternetz;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Status;
 import org.seasheperd.ghostnetfishing.endpoint.geisternetz.GeisternetzEndpointModel;
 import org.seasheperd.ghostnetfishing.endpoint.geisternetz.GeisternetzEndpointService;
 import org.springframework.stereotype.Controller;
@@ -19,20 +20,17 @@ public class GeisternetzDetailController {
 
 
     @GetMapping("/geisternetz/{id}")
-    public String showNewGeisternetzForm(@PathVariable Long id, Model model) {
-        if (id == null) {
-            throw new IllegalArgumentException("id is null");
-        }
-
+    public String showGeisternetzDetailPage(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
         GeisternetzEndpointModel geisternetz = geisternetzService.findById(id);
 
         if (geisternetz == null) {
-            throw new IllegalArgumentException("geisternetz not found");
+            redirectAttributes.addFlashAttribute("errorMessage", "Geisternetz nicht gefunden.");
+            return "redirect:/geisternetz";
         } else {
             model.addAttribute("geisternetz", geisternetz);
-            System.out.println("userId: " + geisternetz.getUserId());
+            return "geisternetz-detail";
         }
-        return "geisternetz-detail";
+
     }
 
     @PostMapping("/geisternetz/zuweisen")
@@ -40,13 +38,22 @@ public class GeisternetzDetailController {
                                      HttpSession session,
                                      RedirectAttributes redirectAttributes) {
 
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Sie müssen angemeldet sein.");
-            return "redirect:/login";
-        }
+        long userId = (Long) (session.getAttribute("userId"));
 
         geisternetzService.updateGeisternetzUserId(geisternetzId, userId);
+        redirectAttributes.addAttribute("successMessage", "Das Geisternetz wurde erfolgreich zugewiesen.");
+
+        return "redirect:/geisternetz/" + geisternetzId;
+    }
+
+    @PostMapping("/geisternetz/status")
+    public String changeStatus(@RequestParam Long geisternetzId,
+                               @RequestParam Status neuerStatus,
+                               RedirectAttributes redirectAttributes) {
+
+        geisternetzService.updateGeisternetzStatus(geisternetzId, neuerStatus);
+
+        redirectAttributes.addAttribute("successMessage", "Der Status des Geisternetz wurde erfolgreich geändert.");
 
         return "redirect:/geisternetz/" + geisternetzId;
     }

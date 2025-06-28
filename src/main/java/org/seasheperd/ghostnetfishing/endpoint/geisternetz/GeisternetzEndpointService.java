@@ -26,11 +26,15 @@ public class GeisternetzEndpointService {
         service.updateUserId(id, newUserId);
     }
 
-    public List<GeisternetzEndpointModel> findAllGemeldetGeisternetze() {
+    public List<GeisternetzEndpointModel> findAllZuBergendeGeisternetze() {
         return service.findAllGemeldetGeisternetze().stream().map(mapper::toGeisternetzEndpointModel).toList();
     }
 
     public GeisternetzEndpointModel findById(long id) {
         return service.findById(id).map(mapper::toGeisternetzEndpointModel).orElse(null);
+    }
+
+    public List<GeisternetzEndpointModel> findAllGeisternetzeByUserId(long userId) {
+        return service.findAllGeisternetzeByUserId(userId).stream().map(mapper::toGeisternetzEndpointModel).toList();
     }
 }

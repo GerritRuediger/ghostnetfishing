@@ -18,4 +18,6 @@ public interface GeisternetzService {
     List<Geisternetz> findAllGemeldetGeisternetze();
 
     Optional<Geisternetz> findById(long id);
+
+    List<Geisternetz> findAllGeisternetzeByUserId(long userId);
 }
