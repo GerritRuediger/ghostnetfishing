@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,11 +24,12 @@ public class RegistrationController {
     @PostMapping("/register")
     public String processRegistration(
             @ModelAttribute("user") UserEndpointModel userDto,
-            Model model) {
+            RedirectAttributes redirectAttributes) {
 
         System.out.println("Registrierung: " + userDto.getTelefonnr());
         try {
             userEndpointService.registerUser(userDto);
+            redirectAttributes.addFlashAttribute("successMessage", "Sie wurden erfolgreich registriert.");
             return "redirect:/login";
         } catch (Exception ex) {
             return "register";

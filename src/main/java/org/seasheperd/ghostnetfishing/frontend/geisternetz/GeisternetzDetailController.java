@@ -41,7 +41,7 @@ public class GeisternetzDetailController {
         long userId = (Long) (session.getAttribute("userId"));
 
         geisternetzService.updateGeisternetzUserId(geisternetzId, userId);
-        redirectAttributes.addAttribute("successMessage", "Das Geisternetz wurde erfolgreich zugewiesen.");
+        redirectAttributes.addFlashAttribute("successMessage", "Das Geisternetz wurde erfolgreich zugewiesen.");
 
         return "redirect:/geisternetz/" + geisternetzId;
     }
@@ -53,7 +53,7 @@ public class GeisternetzDetailController {
 
         geisternetzService.updateGeisternetzStatus(geisternetzId, neuerStatus);
 
-        redirectAttributes.addAttribute("successMessage", "Der Status des Geisternetz wurde erfolgreich geändert.");
+        redirectAttributes.addFlashAttribute("successMessage", "Der Status des Geisternetz wurde erfolgreich geändert.");
 
         return "redirect:/geisternetz/" + geisternetzId;
     }

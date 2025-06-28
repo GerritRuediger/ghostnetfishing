@@ -1,5 +1,6 @@
 package org.seasheperd.ghostnetfishing.frontend.geisternetz;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.seasheperd.ghostnetfishing.endpoint.geisternetz.GeisternetzEndpointModel;
@@ -16,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class GeisternetzOverviewController {
     private final GeisternetzEndpointService geisternetzService;
 
-    @GetMapping("/geisternetz")
-    public String showGeisternetzPersonalUebersicht(Model model, HttpSession session) {
+    @GetMapping("/personal")
+    public String showGeisternetzPersonalUebersicht(Model model, HttpSession session) throws JsonProcessingException {
         Long userId = (Long) (session.getAttribute("userId"));
         if (userId == null) {
             return "redirect:/login";
@@ -29,7 +30,7 @@ public class GeisternetzOverviewController {
     }
 
     @GetMapping("/geisternetz")
-    public String showGeisternetzUebersicht(Model model, HttpSession session) {
+    public String showGeisternetzUebersicht(Model model, HttpSession session) throws JsonProcessingException {
         if (session.getAttribute("userId") == null) {
             return "redirect:/login";
         }

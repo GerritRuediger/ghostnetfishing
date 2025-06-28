@@ -3,33 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Geisternetze</title>
+    <link rel="stylesheet" th:href="@{/css/geisternetz-uebersicht.css}"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
 <h1 th:text="${ueberschrift}"/>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Breitengrad</th>
-        <th>Längengrad</th>
-        <th>Größe</th>
-        <th>Status</th>
-        <th>Aktionen</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="netz : ${geisternetze}">
-        <td th:text="${netz.standort.breitengrad}"/>
-        <td th:text="${netz.standort.laengengrad}"/>
-        <td th:text="${netz.groesse}"/>
-        <td th:text="${netz.status}"/>
-        <td>
-            <a th:href="@{'/geisternetz/' + ${netz.id}}">Details</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="tabs">
+    <button class="tab-btn active" onclick="showTab('tabelle', event)">Tabellarisch</button>
+    <button class="tab-btn" onclick="showTab('karte', event)">Karte</button>
+</div>
+
+<div id="tabelle" class="tab-content active">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Breitengrad</th>
+            <th>Längengrad</th>
+            <th>Größe</th>
+            <th>Status</th>
+            <th>Aktionen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="netz : ${geisternetze}">
+            <td th:text="${netz.standort.breitengrad}"/>
+            <td th:text="${netz.standort.laengengrad}"/>
+            <td th:text="${netz.groesse}"/>
+            <td th:text="${netz.status}"/>
+            <td>
+                <a th:href="@{'/geisternetz/' + ${netz.id}}">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="karte" class="tab-content">
+    <div id="map"></div>
+</div>
+
+<script th:inline="javascript">
+    const geisternetze = [[${geisternetze}]];
+</script>
+
+<script th:src="@{/js/geisternetz-uebersicht.js}"></script>
 
 </body>
 </html>
