@@ -16,6 +16,7 @@ public class UserDataModel {
     private long id;
     private String vorname;
     private String nachname;
+    @Column(unique = true)
     private String telefonnr;
     private String password;
 }

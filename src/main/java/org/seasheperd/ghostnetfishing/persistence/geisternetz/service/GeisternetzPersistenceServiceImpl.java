@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Geisternetz;
 import org.seasheperd.ghostnetfishing.domain.geisternetz.spi.GeisternetzPersistenceService;
 import org.seasheperd.ghostnetfishing.persistence.geisternetz.model.GeisternetzDataModel;
+import org.seasheperd.ghostnetfishing.persistence.geisternetz.model.StandortDataModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +16,17 @@ public class GeisternetzPersistenceServiceImpl implements GeisternetzPersistence
 
     private final GeisternetzRepository geisternetzRepository;
     private final GeisternetzPersistenceMapper geisternetzPersistenceMapper;
+    private final StandortRepository standortRepository;
 
     @Override
     public Geisternetz save(Geisternetz geisternetz) {
         GeisternetzDataModel dataModel = geisternetzPersistenceMapper.toGeisternetzDataModel(geisternetz);
 
         GeisternetzDataModel savedDataModel = geisternetzRepository.save(dataModel);
+        if (savedDataModel.getStandort().getId() == 0) {
+            Optional<StandortDataModel> standort = standortRepository.findByBreitengradAndLaengengrad(savedDataModel.getStandort().getBreitengrad(), savedDataModel.getStandort().getLaengengrad());
+            standort.ifPresent(savedDataModel::setStandort);
+        }
 
         return geisternetzPersistenceMapper.toGeisternetz(savedDataModel);
     }
