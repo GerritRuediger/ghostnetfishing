@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
 <h1>Geisternetz Detailansicht</h1>
 <div th:if="${successMessage}" class="alert alert-success">
     <p th:text="${successMessage}"></p>

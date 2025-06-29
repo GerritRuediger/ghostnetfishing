@@ -1,0 +1,9 @@
+<nav th:fragment="navbar" style="background-color: #1a4f63; padding: 1em;">
+    <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
+        <li><a th:href="@{/geisternetz}" style="color: white; text-decoration: none;">Offene Netze</a></li>
+        <li><a th:href="@{/geisternetz/new}" style="color: white; text-decoration: none;">Netz melden</a></li>
+        <li><a th:href="@{/personal}" style="color: white; text-decoration: none;">Meine Netze</a></li>
+        <li style="margin-left: auto;"><a th:href="@{/logout}" style="color: white; text-decoration: none;">Logout</a>
+        </li>
+    </ul>
+</nav>

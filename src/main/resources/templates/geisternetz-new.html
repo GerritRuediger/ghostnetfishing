@@ -7,6 +7,11 @@
 </head>
 <body>
 
+<div th:if="${session.userId != null}">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+</div>
+
+
 <h1>Geisternetz erfassen</h1>
 
 <div th:if="${successMessage}" class="alert alert-success">

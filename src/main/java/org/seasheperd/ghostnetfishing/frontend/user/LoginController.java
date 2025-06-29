@@ -42,4 +42,10 @@ public class LoginController {
             return "redirect:/geisternetz";
         }
     }
+
+    @GetMapping("/logout")
+    public String processLogout(HttpSession httpSession) {
+        httpSession.removeAttribute("userId");
+        return "redirect:/";
+    }
 }
