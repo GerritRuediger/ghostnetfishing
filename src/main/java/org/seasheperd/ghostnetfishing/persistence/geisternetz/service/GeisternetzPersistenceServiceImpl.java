@@ -22,18 +22,18 @@ public class GeisternetzPersistenceServiceImpl implements GeisternetzPersistence
     public Geisternetz save(Geisternetz geisternetz) {
         GeisternetzDataModel dataModel = geisternetzPersistenceMapper.toGeisternetzDataModel(geisternetz);
 
-        GeisternetzDataModel savedDataModel = geisternetzRepository.save(dataModel);
-        if (savedDataModel.getStandort().getId() == 0) {
-            Optional<StandortDataModel> standort = standortRepository.findByBreitengradAndLaengengrad(savedDataModel.getStandort().getBreitengrad(), savedDataModel.getStandort().getLaengengrad());
-            standort.ifPresent(savedDataModel::setStandort);
+        if (dataModel.getStandort().getId() == 0) {
+            Optional<StandortDataModel> standort = standortRepository.findByBreitengradAndLaengengrad(dataModel.getStandort().getBreitengrad(), dataModel.getStandort().getLaengengrad());
+            standort.ifPresent(dataModel::setStandort);
         }
+        GeisternetzDataModel savedDataModel = geisternetzRepository.save(dataModel);
 
         return geisternetzPersistenceMapper.toGeisternetz(savedDataModel);
     }
 
     @Override
     public Geisternetz getGeisternetzById(long id) {
-        return geisternetzRepository.findById(id).map(geisternetzPersistenceMapper::toGeisternetz).orElseThrow();
+        return findById(id).orElseThrow();
     }
 
     @Override

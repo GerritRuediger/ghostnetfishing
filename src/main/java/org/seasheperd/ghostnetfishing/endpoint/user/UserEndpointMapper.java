@@ -6,7 +6,5 @@ import org.seasheperd.ghostnetfishing.domain.user.model.User;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserEndpointMapper {
-    UserEndpointModel toUserEndpointModel(User user);
-
     User toUser(UserEndpointModel userEndpointModel);
 }

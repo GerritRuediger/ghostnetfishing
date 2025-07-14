@@ -9,7 +9,5 @@ import org.seasheperd.ghostnetfishing.domain.geisternetz.model.Standort;
 public interface GeisternetzEndpointMapper {
     GeisternetzEndpointModel toGeisternetzEndpointModel(Geisternetz geisternetz);
 
-    Geisternetz toGeisternetz(GeisternetzEndpointModel geisternetzEndpointModel);
-
     Standort toStandort(StandortEndpointModel standortEndpointModel);
 }
