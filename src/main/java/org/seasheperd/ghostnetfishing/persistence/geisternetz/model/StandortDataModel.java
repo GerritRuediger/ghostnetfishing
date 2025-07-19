@@ -9,11 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "standort")
+@Table(name = "standort",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_standort_koordinaten",
+                columnNames = {"breitengrad", "laengengrad"}
+        )
+)
 public class StandortDataModel {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
-  double breitengrad;
-  double laengengrad;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
+    double breitengrad;
+    double laengengrad;
 }

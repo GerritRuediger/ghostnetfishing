@@ -24,6 +24,7 @@ public class RegistrationController {
     @PostMapping("/register")
     public String processRegistration(
             @ModelAttribute("user") UserEndpointModel userDto,
+            Model model,
             RedirectAttributes redirectAttributes) {
 
         System.out.println("Registrierung: " + userDto.getTelefonnr());
@@ -32,6 +33,7 @@ public class RegistrationController {
             redirectAttributes.addFlashAttribute("successMessage", "Sie wurden erfolgreich registriert.");
             return "redirect:/login";
         } catch (Exception ex) {
+            model.addAttribute("errorMessage", "Sie konnten mit den angegeben Daten sich nicht registrieren.");
             return "register";
         }
     }

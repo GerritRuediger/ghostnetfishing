@@ -2,30 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Willkommen bei Shea Shepherd</title>
-    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+    <title>Willkommen bei Shea Sepherd</title>
+    <link rel="stylesheet" th:href="@{/css/geisternetz.css}"/>
 </head>
 <body>
-<div class="container">
-    <h1>Willkommen bei Shea Shepherd</h1>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<h1>Willkommen bei Shea Sepherd</h1>
 
-    <p>
-        Shea Shepherd ist eine internationale Non-Profit-Organisation, die sich dem Schutz der Meere verschrieben hat.
-        Ein zentraler Teil unserer Arbeit besteht darin, sogenannte <strong>Geisternetze</strong> aufzuspüren und zu
-        bergen –
-        herrenlose Fischernetze, die im Meer treiben und eine große Gefahr für Meereslebewesen darstellen.
-    </p>
+<p>
+    Shea Sepherd ist eine internationale Non-Profit-Organisation, die sich dem Schutz der Meere verschrieben hat.
+    Ein zentraler Teil unserer Arbeit besteht darin, sogenannte <strong>Geisternetze</strong> aufzuspüren und zu
+    bergen –
+    herrenlose Fischernetze, die im Meer treiben und eine große Gefahr für Meereslebewesen darstellen.
+</p>
 
-    <p>
-        Mit dieser Plattform ermöglichen wir es Freiwilligen und Unterstützern, Geisternetze zu <strong>melden</strong>,
-        ihren Status zu verfolgen und sich an der <strong>Bergung</strong> zu beteiligen.
-    </p>
-
-    <div class="actions">
-        <a th:href="@{/login}" class="btn">Login</a>
-        <a th:href="@{/register}" class="btn">Registrieren</a>
-        <a th:href="@{/geisternetz/new}" class="btn">Geisternetz melden</a>
-    </div>
-</div>
+<p>
+    Mit dieser Plattform ermöglichen wir es Freiwilligen und Unterstützern, Geisternetze zu <strong>melden</strong>,
+    ihren Status zu verfolgen und sich an der <strong>Bergung</strong> zu beteiligen.
+</p>
 </body>
 </html>

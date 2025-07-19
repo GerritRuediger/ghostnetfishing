@@ -1,0 +1,121 @@
+.tabs {
+    margin-bottom: 10px;
+}
+
+button,
+a.button {
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+button.active {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+td.aktionen {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td .button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0;
+    white-space: nowrap;
+    width: auto;
+}
+
+
+th {
+    background-color: #f0f0f0;
+}
+
+nav {
+    background-color: #1a4f63;
+    padding: 1em;
+}
+
+.navitems {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.company-name {
+    font-weight: bold;
+    margin-right: 24px;
+    font-size: 2rem;
+    padding: 8px 0;
+}
+
+.company-name a {
+    text-decoration: none;
+    color: white
+}
+
+.navitem {
+    color: white;
+    text-decoration: none;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+
+#map {
+    width: 100%;
+    height: 500px;
+}

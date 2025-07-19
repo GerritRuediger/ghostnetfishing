@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Geisternetze</title>
-    <link rel="stylesheet" th:href="@{/css/geisternetz-uebersicht.css}"/>
+    <link rel="stylesheet" th:href="@{/css/geisternetz.css}"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="~{fragments/navbar-loggedin :: navbar-loggedin}"></div>
 
 <h1 th:text="${ueberschrift}"/>
 
@@ -35,8 +35,8 @@
             <td th:text="${netz.standort.laengengrad}"/>
             <td th:text="${netz.groesse}"/>
             <td th:text="${netz.status}"/>
-            <td>
-                <a th:href="@{'/geisternetz/' + ${netz.id}}">Details</a>
+            <td class="aktionen">
+                <a th:href="@{'/geisternetz/' + ${netz.id}}" class="button">Details</a>
             </td>
         </tr>
         </tbody>

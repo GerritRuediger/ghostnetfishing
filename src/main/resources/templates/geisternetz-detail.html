@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Geisternetz Details</title>
+    <link rel="stylesheet" th:href="@{/css/geisternetz.css}"/>
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="~{fragments/navbar-loggedin :: navbar-loggedin}"></div>
 
 <h1>Geisternetz Detailansicht</h1>
 <div th:if="${successMessage}" class="alert alert-success">
@@ -33,7 +34,7 @@
         </form>
     </div>
 
-    <p th:if="${geisternetz.userId != session.userId and geisternetz.status.isFinal()}"><strong>Status:</strong> <span
+    <p th:if="${geisternetz.userId != session.userId or geisternetz.status.isFinal()}"><strong>Status:</strong> <span
             th:text="${geisternetz.status}"/></p>
 
     <div th:if="${geisternetz.userId == null}">
@@ -46,7 +47,7 @@
 
 </div>
 
-<p><a th:href="@{/geisternetz}">Zurück zur Übersicht</a></p>
+<p><a class="button" th:href="@{/geisternetz}">Zurück zur Übersicht</a></p>
 
 </body>
 </html>

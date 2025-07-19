@@ -1,0 +1,10 @@
+<nav th:fragment="navbar-loggedin">
+    <ul class="navitems">
+        <li class="company-name"><a th:href="@{/}">Shea Sepherd</a></li>
+        <li><a th:href="@{/geisternetz}" class="navitem">Offene Netze</a></li>
+        <li><a th:href="@{/geisternetz/new}" class="navitem">Netz melden</a></li>
+        <li><a th:href="@{/personal}" class="navitem">Meine Netze</a></li>
+        <li style="margin-left: auto;"><a th:href="@{/logout}" class="navitem">Logout</a>
+        </li>
+    </ul>
+</nav>

@@ -35,7 +35,7 @@ public class LoginController {
 
         Long userId = userEndpointService.verifyLogin(telefonnr, password);
         if (userId == null) {
-            model.addAttribute("error", "Login fehlgeschlagen.");
+            model.addAttribute("errorMessage", "Login fehlgeschlagen.");
             return "login";
         } else {
             httpSession.setAttribute("userId", userId);
