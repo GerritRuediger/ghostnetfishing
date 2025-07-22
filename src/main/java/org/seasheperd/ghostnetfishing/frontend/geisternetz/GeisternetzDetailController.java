@@ -20,7 +20,14 @@ public class GeisternetzDetailController {
 
 
     @GetMapping("/geisternetz/{id}")
-    public String showGeisternetzDetailPage(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
+    public String showGeisternetzDetailPage(@PathVariable long id,
+                                            Model model,
+                                            HttpSession session,
+                                            RedirectAttributes redirectAttributes) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/login";
+        }
+
         GeisternetzEndpointModel geisternetz = geisternetzService.findById(id);
 
         if (geisternetz == null) {
@@ -30,7 +37,6 @@ public class GeisternetzDetailController {
             model.addAttribute("geisternetz", geisternetz);
             return "geisternetz-detail";
         }
-
     }
 
     @PostMapping("/geisternetz/zuweisen")

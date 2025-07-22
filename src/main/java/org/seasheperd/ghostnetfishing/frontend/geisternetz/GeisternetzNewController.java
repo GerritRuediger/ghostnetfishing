@@ -23,7 +23,6 @@ public class GeisternetzNewController {
 
     @PostMapping("/geisternetz/new")
     public String registerNewGeisternetz(@ModelAttribute("geisternetz") GeisternetzEndpointModel geisternetz,
-                                         Model model,
                                          RedirectAttributes redirectAttributes) {
         geisternetzService.submitNewGeisternetz(geisternetz.getStandort(), geisternetz.getGroesse());
         redirectAttributes.addFlashAttribute("successMessage", "Geisternetz wurde erfolgreich gespeichert.");

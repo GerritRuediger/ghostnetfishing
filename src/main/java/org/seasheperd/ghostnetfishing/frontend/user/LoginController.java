@@ -31,8 +31,6 @@ public class LoginController {
             @ModelAttribute("password") String password,
             HttpSession httpSession,
             Model model) {
-
-
         Long userId = userEndpointService.verifyLogin(telefonnr, password);
         if (userId == null) {
             model.addAttribute("errorMessage", "Login fehlgeschlagen.");
