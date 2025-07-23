@@ -32,7 +32,7 @@
         <legend>Details</legend>
         <label for="groesse">Größe:</label>
         <select id="groesse" th:field="*{groesse}" required>
-            <option th:each="g : ${T(org.seasheperd.ghostnetfishing.domain.geisternetz.model.Groesse).values()}"
+            <option th:each="g : ${T(org.sheasepherd.ghostnetfishing.domain.geisternetz.model.Groesse).values()}"
                     th:value="${g}" th:text="${g}">Größe
             </option>
         </select><br/>
